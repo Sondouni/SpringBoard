@@ -28,16 +28,19 @@
                     <th>hits</th>
                     <th>date</th>
                 </tr>
-                <tr>
-                    <c:forEach items="${requestScope.list}" var="item">
-                        <td>${item.iboard}</td>
+                <c:forEach items="${requestScope.list}" var="item">
+                    <tr class="record"
+                        data-iboard="${item.iboard}">
+                        <td >${item.iboard}</td>
                         <td>${item.title}</td>
                         <td>${item.hits}</td>
                         <td>${item.rdt}</td>
-                    </c:forEach>
-                </tr>
+                    </tr>
+                </c:forEach>
             </table>
         </c:otherwise>
     </c:choose>
+    <script src="/res/js/board/list.js">
+    </script>
 </body>
 </html>
