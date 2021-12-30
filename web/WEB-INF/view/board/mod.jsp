@@ -10,6 +10,7 @@
 </head>
 <body>
     <h1>수정</h1>
+    <div>${requestScope.msg}</div>
     <form action="/board/mod" method="post">
         <div><input type="hidden" name="iboard" value="${param.iboard}"></div>
         <div><input type="text" name="title" placeholder="title" value="${requestScope.data.title}" ></div>

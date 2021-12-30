@@ -11,7 +11,13 @@ public class BoardService {
     private BoardMapper mapper;
 
     public int insBoard(BoardEntity entity){
-        return mapper.insBoard(entity);
+        int result = 0;
+        try {
+            result = mapper.insBoard(entity);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     public List<BoardEntity> selBoardList(){
@@ -20,9 +26,24 @@ public class BoardService {
 
     public BoardEntity selBoard(BoardEntity entity){ return  mapper.selBoard(entity); }
 
-    public int delBoard(BoardEntity entity) { return  mapper.delBoard(entity); }
+    public int delBoard(BoardEntity entity) {
+        int result = 0;
+        try {
+            result = mapper.delBoard(entity);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;  }
 
-    public int updBoard(BoardEntity entity) { return mapper.updBoard(entity); }
+    public int updBoard(BoardEntity entity) {
+        int result = 0;
+        try {
+            result = mapper.updBoard(entity);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 
     public void updBoardHitsUp(BoardEntity entity) {
         entity.setHits(1);

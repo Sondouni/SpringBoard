@@ -8,6 +8,7 @@
     <title></title>
 </head>
 <body>
+    <div>${requestScope.msg}</div>
     <div>
         <button class="btnUpd">change</button>
         <button class="btnDel">delete</button>
