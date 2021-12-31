@@ -1,6 +1,8 @@
-package org.example.springboard;
+package org.example.springboard.board;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.example.springboard.board.model.BoardEntity;
+import org.example.springboard.board.model.BoardVo;
 
 import java.util.List;
 
@@ -8,9 +10,9 @@ import java.util.List;
 public interface BoardMapper {
     int insBoard(BoardEntity entity);
 
-    List<BoardEntity> selBoardList();
+    List<BoardVo> selBoardList();
 
-    BoardEntity selBoard(BoardEntity entity);
+    BoardVo selBoard(BoardEntity entity);
 
     int delBoard(BoardEntity entity);
 

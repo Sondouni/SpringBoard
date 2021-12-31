@@ -9,16 +9,19 @@
 </head>
 <body>
     <div>${requestScope.msg}</div>
-    <div>
-        <button class="btnUpd">change</button>
-        <button class="btnDel">delete</button>
-    </div>
+    <c:if test="${sessionScope.loginUser.iuser == requestScope.data.writer}">
+        <div>
+            <button class="btnUpd">change</button>
+            <button class="btnDel">delete</button>
+        </div>
+    </c:if>
     <div class="iboard"
             data-iboard="${requestScope.data.iboard}">
         num : ${requestScope.data.iboard}</div>
     <div>title : ${requestScope.data.title}</div>
     <div>context : ${requestScope.data.ctnt}</div>
-    <div>hits : ${requestScope.data.hits}</div>
+    <div>hits : ${requestScope.data.hit}</div>
+    <div>wirter : ${requestScope.data.writerNm}</div>
     <div>writeTime : ${requestScope.data.rdt}</div>
     <div>changedTime : ${requestScope.data.mdt}</div>
     <script src="/res/js/board/detail.js"></script>

@@ -1,5 +1,8 @@
-package org.example.springboard;
+package org.example.springboard.board;
 
+import org.example.springboard.UserUtils;
+import org.example.springboard.board.model.BoardEntity;
+import org.example.springboard.board.model.BoardVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,21 +10,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/board")
 public class BoardController {
     @Autowired
     private BoardService service;
+
+
     //bean등록 ( 서블릿 처럼 주솟값이랑 매핑이 되는 객체 ) 을 할수있음
     @GetMapping("/list")
     public void list(Model model){
-        List<BoardEntity> list = service.selBoardList();
+        List<BoardVo> list = service.selBoardList();
         model.addAttribute("list",list);
     }
 
@@ -45,6 +48,7 @@ public class BoardController {
     @GetMapping("/detail")
     public void detail(Model model,BoardEntity entity){
         service.updBoardHitsUp(entity);
+        System.out.println(entity);
         model.addAttribute("data",service.selBoard(entity));
     }
     //삭제

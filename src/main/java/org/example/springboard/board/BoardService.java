@@ -1,5 +1,8 @@
-package org.example.springboard;
+package org.example.springboard.board;
 
+import org.example.springboard.UserUtils;
+import org.example.springboard.board.model.BoardEntity;
+import org.example.springboard.board.model.BoardVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +12,13 @@ import java.util.List;
 public class BoardService {
     @Autowired
     private BoardMapper mapper;
+    @Autowired
+    private UserUtils userUtils;
 
     public int insBoard(BoardEntity entity){
         int result = 0;
         try {
+            entity.setWriter(userUtils.getLoginUserPk());
             result = mapper.insBoard(entity);
         } catch (Exception e) {
             e.printStackTrace();
@@ -20,13 +26,14 @@ public class BoardService {
         return result;
     }
 
-    public List<BoardEntity> selBoardList(){
+    public List<BoardVo> selBoardList(){
         return mapper.selBoardList();
     }
 
-    public BoardEntity selBoard(BoardEntity entity){ return  mapper.selBoard(entity); }
+    public BoardVo selBoard(BoardEntity entity){ return  mapper.selBoard(entity); }
 
     public int delBoard(BoardEntity entity) {
+        entity.setWriter(userUtils.getLoginUserPk());
         int result = 0;
         try {
             result = mapper.delBoard(entity);
@@ -36,6 +43,7 @@ public class BoardService {
         return result;  }
 
     public int updBoard(BoardEntity entity) {
+        entity.setWriter(userUtils.getLoginUserPk());
         int result = 0;
         try {
             result = mapper.updBoard(entity);
@@ -46,6 +54,6 @@ public class BoardService {
     }
 
     public void updBoardHitsUp(BoardEntity entity) {
-        entity.setHits(1);
+        entity.setHit(1);
         mapper.updBoard(entity);}
 }

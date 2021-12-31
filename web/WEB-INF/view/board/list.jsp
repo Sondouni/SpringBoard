@@ -10,9 +10,11 @@
 </head>
 <body>
     <h1>BoardList</h1>
-    <div>
-        <a href="/board/write"><input type="button" value="write"></a>
-    </div>
+    <c:if test="${sessionScope.loginUser != null}">
+        <div>
+            <a href="/board/write"><input type="button" value="write"></a>
+        </div>
+    </c:if>
     <c:choose>
         <c:when test="${fn:length(requestScope.list)==0}">
             <script>
@@ -25,6 +27,7 @@
                 <tr>
                     <th>num</th>
                     <th>title</th>
+                    <th>writer</th>
                     <th>hits</th>
                     <th>date</th>
                 </tr>
@@ -33,7 +36,8 @@
                         data-iboard="${item.iboard}">
                         <td >${item.iboard}</td>
                         <td>${item.title}</td>
-                        <td>${item.hits}</td>
+                        <td>${item.writerNm}</td>
+                        <td>${item.hit}</td>
                         <td>${item.rdt}</td>
                     </tr>
                 </c:forEach>
